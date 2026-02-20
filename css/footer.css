@@ -1,3 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: QingSongShouXieTi, sans-serif;
+}
+html {
+    scroll-behavior: smooth;
+    font-family: "Roboto";
+  }
+
+/*---------------------------------------------------------------------------------------------------*/
+/*===================================================================================================*/
+/*---------------------------------------------------------------------------------------------------*/
+
+.header{
+    height: 100vh;
+    min-height: 600px;
+    width: 100%;
+
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+body:not(.touch-device) #header-img {
+    --multiplier: clamp(0, calc(-5 * var(--scroll-y-percent, 0) + 1.5), 1);
+    transform: translate(calc(var(--tx, 0) * var(--multiplier, 1)),calc(var(--ty, 0) * var(--multiplier, 1)));
+    transition: transform .1s linear 0s;
+}
+
 .clearfix {
     content:"";
     display:table;
