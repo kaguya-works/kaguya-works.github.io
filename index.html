@@ -1,221 +1,945 @@
 <!DOCTYPE html>
-    <!--Thank you for visiting and pressing the inspect element, or maybe you cloned this code via my GitHub-->
-    <!--                                                                                 -->
-    <!--Source code maintainer: https://github.com/kaguyahimeAlt -->
-    <!--                                                                                 -->
-<html lang="en" style="--scroll-y: 0px; --scroll-y-percent: 0;" class="">
-<head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZP9QSS9HW"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
-      gtag('config', 'G-FZP9QSS9HW');
-    </script>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Primary Meta Tags -->
+        <title>Kokoson - Audio</title>
+        <meta name="title" content="Kokoson - Audio" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="">
+
+        <!-- Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="" />
+        <meta property="og:title" content="Kokoson - Audio" />
+        <meta property="og:description" content="" />
+        <meta property="og:image" content="Assets/Cover.avif" />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="" />
+        <meta property="twitter:title" content="Kokoson - Audio" />
+        <meta property="twitter:description" content="" />
+        <meta property="twitter:image" content="Assets/Cover.avif" />
+        <link href="styles/product_page/styles.css" rel="stylesheet">
+        <link href="styles/footer.css" rel="stylesheet">
+        <link rel="stylesheet" href="styles/contact.css">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {   
+                // NAVIGATION SCROLLING EFFECT
+
+                let navBar = document.querySelector('nav');
+                navScroll(false)
+
+                document.addEventListener('scroll', () => {
+                    navScroll(false)
+                })
+
+                function navScroll(result) {
+                    // result = if the user is currently viewing the menu page
+                    if (window.scrollY > 0 && !(result)) {
+                        //navBar.style.boxShadow = '0 5px 20px rgba(190, 190, 190, 0.15)';
+                        //navBar.style.backgroundColor = 'white'
+                    }
+                    else {
+                        navBar.style.boxShadow = 'none'
+                        //navBar.style.backgroundColor = 'transparent'
+                    }
+                }
+
+                // MENU BAR
+
+                let menuBar = document.querySelector('#menu-bar');
+                let menuPage = document.querySelector('#menu-page');
+                let html = document.querySelector('html');
+
+                // Determine Screen Device: Desktop or Mobile
+                let menuBarStyle = window.getComputedStyle(menuBar);
+                let screenType = '';
+
+                if (menuBarStyle.display === "flex") {
+                    screenType = "mobile"
+                }
+                else if (menuBarStyle.display === "none") {
+                    screenType = "desktop"
+                }
+                else {
+                    console.log("Error: Failed to identify screen type", screenType)
+                }
+
+                // Show/Hide Menu Page
+
+                menuBar.addEventListener('click', () => {
+                    menuPage.classList.toggle('active');
+
+                    html.style.overflow = (menuPage.classList.contains('active')) ? "hidden" : "scroll"
+                    navScroll(menuPage.classList.contains('active'))
+                })
+
+                // PRODUCT CARDS DISPLAY
+
+                let productContainerWidth = document.querySelector('.product-cards-container').offsetWidth;
+
+                let rootStyles = getComputedStyle(html);
+                let productCardWidth;
+                let productCards;
+
+                if (screenType === "desktop") {
+                    productCardWidth = parseInt(rootStyles.getPropertyValue('--product-card-width').replace('px', ''));
+                    productCardsPerRow = Math.floor(productContainerWidth / (productCardWidth + 5));
+                }
+                else if (screenType === "mobile") {
+                    productCardsPerRow = (html.offsetWidth > 430) ? 3 : 2
+                    productCardWidth = Math.floor((productContainerWidth / productCardsPerRow) - 10)
+                }
+                else {
+                    console.log("Error: Failed to set productCardsPerRow & productCardWidth")
+                }
+
+                let marginSpacing = (productContainerWidth - (productCardsPerRow * productCardWidth)) / (productCardsPerRow - 1);
+                let lastElement = productCardsPerRow - 1;
+                
+                let sectionLastElement = []
+                let productSections = document.querySelectorAll('.product-section');
+                productSections.forEach((section) => {
+                    productCards = section.querySelectorAll('.product-card');
+                    
+                    for (let i = 0; i < productCardsPerRow; i++) {
+                        productCards[i].classList.add('active');
     
-    <link rel="shortcut icon" type="image/x-icon" href="mimi.jpg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-9">
-    <title>Kokosonn | Home Page</title>
-    <link rel="stylesheet" href="css/content.css">
-    <link rel="stylesheet" href="css/content.css">
-    <link rel="stylesheet" href="css/loader.css">
-    <link rel="stylesheet" href="css/contact.css">
-    <link rel="stylesheet" href="css/lightbox.css">
-    <link rel="stylesheet" href="css/animation.css">
-    <link rel="stylesheet" href="css/boxshadow.css">
-    <link rel="stylesheet" href="css/scrollbar.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/skill.css">
-    <link rel="stylesheet" href="css/styler.css">
-    <!-- css-->
-    <!-- Owl carousel -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-    <link rel="stylesheet" href="css/css/index/style.css" />
+                        if (i === lastElement) {
+                            productCards[i].style.marginRight = '0px';
+                        }
+                        else {
+                            productCards[i].style.marginRight = `${marginSpacing}px`;
+                        }
+                    }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+                    sectionLastElement[section.id] = lastElement;
+                })
     
-    <script src="https://natsuno-shosetsu.github.io/js/scroll.js"></script>
-    <script src="https://natsuno-shosetsu.github.io/js/main.js"></script>
-    <script src="https://natsuno-shosetsu.github.io/js/renz.js"></script>
-    <script src="https://natsuno-shosetsu.github.io/js/lightbox-plus-jquery.js"></script>
-    <script>lightbox.option({ disableScrolling: true });</script>
+                // ADDING ITEMS TO WISHLIST
+    
+                let wishListCount;
+                let heartButtons = document.querySelectorAll('.heart-button');
+    
+                heartButtons.forEach((button) => {
+                    button.addEventListener('click', () => {
+                        button.classList.toggle('active');
+                        
+                        wishListCount = accessCounter('.wishlist-link span');
+                        wishListCount.innerHTML = document.querySelectorAll('.heart-button.active').length;
+                    })
+                })
+    
+                // ADDING ITEMS TO CART
+    
+                let cartCount;
+                let cartButtons = document.querySelectorAll('.product-card .blue-button');
+                
+                cartButtons.forEach((button) => {
+                    button.addEventListener('click', () => {
+                        button.classList.toggle('active');
+                        
+                        let buttonString = button.innerHTML.trim();
+                        if (buttonString == "Add To Cart") {
+                            button.innerHTML = "Remove"
+                        }
+                        else if (buttonString == "Remove") {
+                            button.innerHTML = "Add To Cart"
+                        }
+                        else {
+                            console.log("Error: Adding items to cart failed.", buttonString, button.parentElement);
+                        }
+                        
+                        cartCount = accessCounter('.cart-link span');
+                        cartCount.innerHTML = document.querySelectorAll('.product-card .blue-button.active').length;
+                    })
+                })
 
-</head>
-<body>
-    <!--Header section (Icon, title, etc)-->
-    <div id="landing" class="header" data-aos="fade-up" loading="lazy">
-    <div id="background" style="--tx: 0px; --ty: 0px;" class="background"><div class="background-image dismissing" style="background-image: url(&quot;https://s23.moe/assets/69618131_p0-921b5129.webp&quot;);"></div><div class="background-image" style="background-image: url(&quot;https://s23.moe/assets/69618131_p1-0eab8e6f.webp&quot;);"></div></div>
-    <div id="scrollpath"></div>
-    <div id="scrollbar"></div>
-    <!--Sticky navbar-->
-    <div class="navbar box-mid">
-      <div class="navbrand" data-aos="fade-up" data-aos-once=true><a onclick="scrollToTarget('landing')">Home</div>
-      <div class="navcenter" data-aos="fade-up" data-aos-once=true>
-          <a onclick="scrollToTargetAdjusted('mac',75), Unclick()">bla</a>
-          <a onclick="scrollToTargetAdjusted('commission',75), Unclick()">bla</a>
-          <a onclick="scrollToTargetAdjusted('tos',75), Unclick()">Terms of Service</a>
-          <a id="nav-contact" onclick="scrollToTargetAdjusted('contact',75), Unclick()">Contact</a>
-      </div>
-      <div class="navsupport" data-aos="fade-up" data-aos-once=true><a onclick="scrollToTargetAdjusted('contact',75)" target="_blank">Contact</a>
-          <div class="hamburger">
-              <div class="bar"></div>
-              <div class="bar"></div>
-              <div class="bar"></div>
-          </div>
-  
-      </div>
-  </div>
-    <br>
-    <div class="content">
-        <div class="text-title" data-aos="fade-up"><p>Home</p></div>
-        </div>
-        <div id="my-skill" data-aos="fade-up"></div>
-            <div class="game-container text-title" data-aos="fade-up">
-        <!-- screenshots -->
-    <div class="container screenshots-container owl-carousel owl-theme">
-        <div class="carousel-item">
-          <img src="img/you.png" alt="Mockup" />
-          <div class="feature-ss">
-            <img src="img/music.png" alt="SS" />
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="img/imme.png" alt="Mockup" />
-          <div class="feature-ss">
-            <img src="img/blur1.png" alt="SS" />
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="img/you.png" alt="Mockup" />
-          <div class="feature-ss">
-            <img src="img/music1.png" alt="SS" />
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="img/imme.png" alt="Mockup" />
-          <div class="feature-ss">
-            <img src="img/blur.png" alt="SS" />
-          </div>
-        </div>
-      </div>
-    </div>
-        <div class="content">
-        <div id="contact">
-            <div class="text-title" data-aos="fade-up"><p>Contact</p></div>
-            <div class="contact-container">
-                <div class="contact-left">
-                    <div class="contact-inner-container ">
-                        <form id="FORM">
-                            <div class="text-header" data-aos="fade-up">Message</div>
-                            <br>
-                            <br>
+                function accessCounter(spanElement) {
+                    if (screenType === 'desktop') {
+                        return document.querySelector('#navbar-tools').querySelector(spanElement)
+                    }
+                    else if (screenType === 'mobile') {
+                        return document.querySelector('#menu-tools').querySelector(spanElement)
+                    }
+                    else {
+                        console.log("Error: accessCounter Function failed.")
+                    }
+                }
 
-                            <div class="contact-thin-text" data-aos="fade-up">Name*</div>
-                            <input type="text" id="NAME" name="Name" class="box-mid" placeholder="Your name" required data-aos="fade-up">
+                // SLIDESHOW
 
-                            <div class="contact-thin-text" data-aos="fade-up">Email*</div>
-                            <input type="email" id="EMAIL" name="Email" class="box-mid" placeholder="Email address" required data-aos="fade-up">
+                let slideshowButtons = document.querySelectorAll('.slideshow-button');
+                slideshowButtons.forEach((button) => {
+                    button.addEventListener('click', () => {
+                        let slideshowSection = button.parentElement.dataset.slideshow;
+                        let slideshowContainer = document.querySelector(`#product-section-${slideshowSection}`);
+                        let productCards = slideshowContainer.querySelectorAll('.product-card');
 
-                            <div class="contact-thin-text" data-aos="fade-up">Message*</div>
-                            <textarea id="MESSAGE" name="Message" class="box-mid" rows="6" placeholder="Message" required data-aos="fade-up"></textarea>
-                            <div data-aos="fade-up">
-                                <div class="send box-mid" onclick="SendEmail()">Send</div>
-                            </div>
-                            
-                            <div class="text-header email-not-sent">
-                                Sending email...
-                            </div>
-                        </form>
+                        let currentSection = `product-section-${slideshowSection}`;
+                        if (button.classList.contains('prev-button')) {
+                            if (sectionLastElement[currentSection] <= (productCardsPerRow - 1)) {
+                                sectionLastElement[currentSection] = productCards.length - 1
+                            }
+                            else {
+                                sectionLastElement[currentSection]--
+                            }
+                        }
+                        else if (button.classList.contains('next-button')) {
+                            if (sectionLastElement[currentSection] === (productCards.length - 1)) {
+                                sectionLastElement[currentSection] = productCardsPerRow - 1;
+                            }
+                            else {
+                                sectionLastElement[currentSection]++
+                            }
+                        }
+                        else {
+                            console.log("Slideshow: Error occurred");
+                        }
+
+                        for (let i = 0; i < productCards.length; i++) {
+                            if ((i <= sectionLastElement[currentSection]) && (i >= (sectionLastElement[currentSection] - (productCardsPerRow - 1)))) {
+                                productCards[i].classList.add('active');
+
+                                if (i === sectionLastElement[currentSection]) {
+                                    productCards[i].style.marginRight = '0px'
+                                }
+                                else {
+                                    productCards[i].style.marginRight = `${marginSpacing}px`
+                                }
+                            }
+                            else {
+                                productCards[i].classList.remove('active');
+                                productCards[i].style.marginRight = '0px'
+                            }
+                        }
+                    })
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <nav>
+            <div id="navbar">
+                <div id="navbar-logo">
+                    <img src="images/kokoson.png" alt="">
+                </div>
+                <div id="menu-bar">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                    </svg>
+                </div>
+                <div id="navbar-links">
+                    <ul>
+                        <li>
+                            <a href="index.html">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#product">
+                                Product
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- MENU BAR PAGE -->
+        <div id="menu-page">
+            <div id="menu-page-wrapper">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#product">
+                            Product
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>  
+        <!-- END OF MENU PAGE --> 
+
+        <!-- MAIN BODY -->
+        <div id="product-page-body">
+            <div id="product-top-container">
+                <div id="product-top-wrapper">
+                    <div id="product-top-text-section">
+                        <h1>Kokoson Audio</h1>
+                        <h2> Professional Audio Solution</h2>
+                        <p>
+                            test
+                            <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper diam nisl, a pharetra nibh scelerisque quis.
+                            Ante ipsum vestibulum primis in faucibus orci luctuc et ultrices posuere.-->
+                        </p>
                     </div>
                 </div>
-                <div class="contact-right">
-                    <div class="contact-inner-container">
-                        <div class="text-header" data-aos="fade-up">Get in touch</div>
-                        
+            </div>
 
-                        <div class="contact-thin-text" data-aos="fade-up">
-                        <p>You can contact me via my social media below:</p>
+            <!-- PRODUCT CATEGORIES -->
+             <div id="product-category-container">
+                <div id="product-category-text">
+                    <span class="blue-line"></span>
+                    <span class="section-category-text">Categories</span>
+                </div>
+                <div id="product-category-wrapper">
+                    <div class="product-category" data-tilt onclick="window.open('#', '_blank');"">
+                        <div class="product-category-image-section">
+                            <img src="" alt="">
                         </div>
-                        <div class="external-links external-links-2" data-aos="fade-up"><br>
-                            <ul>
-                                <li><a id="facebook2" href="https://www.facebook.com//" target="_blank" onmouseover="ExternalLinksEnter('facebook2')" onmouseleave="ExternalLinksLeave()"><img src="resource/svg/facebook.svg"><p>Facebook</p></a></li>
-                                <li><a id="instagram2" href="https://www.instagram.com//" target="_blank" onmouseover="ExternalLinksEnter('instagram2')" onmouseleave="ExternalLinksLeave()"><img src="resource/svg/instagram.svg"><p>Instagram</p></a></li>
-                                <li><a id="twitter2" href="https://twitter.com/" target="_blank" onmouseover="ExternalLinksEnter('twitter2')" onmouseleave="ExternalLinksLeave()"><img src="resource/svg/twitter.svg"><p>Twitter</p></a></li>
-                                
-                            </ul>
+                        <div class="product-category-desc-section">
+                            <span class="product-category-type">
+                                All
+                            </span>
+                            <span class="product-category-number">
+                                0 items
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="product-category">
+                        <div class="product-category-image-section">
+                            <img src="" alt="">
+                        </div>
+                        <div class="product-category-desc-section">
+                            <span class="product-category-type">
+                                Microphone
+                            </span>
+                            <span class="product-category-number">
+                                0 items
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="product-category">
+                        <div class="product-category-image-section">
+                            <img src="images/product-page/speker/1.png" alt="">
+                        </div>
+                        <div class="product-category-desc-section">
+                            <span class="product-category-type">
+                                Speaker
+                            </span>
+                            <span class="product-category-number">
+                                4 items
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="product-category">
+                        <div class="product-category-image-section">
+                            <img src="images/product-page/featured-categories/1.png" alt="">
+                        </div>
+                        <div class="product-category-desc-section">
+                            <span class="product-category-type">
+                                Mixer Console
+                            </span>
+                            <span class="product-category-number">
+                                1 items
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- SECOND PROMOTION SECTION -->
+            <div class="promotion-section">
+                <div class="promo-image-container">
+                    <img src="images/product-page/featured-categories/1.png" alt="">
+                </div>
+                <div class="promo-text-container">
+                    <div class="promo-heading">
+                        <span class="blue-line"></span>
+                        <h1>Mixer ASHLEY X Man 8</h1>
+                    </div>
+                    <h2>Professional Audio Solution <!--<br>Of Fresh Warmth</h2>-->
+                    <p> 
+                        test
+                        <!--Lorem ipsum dolor sit amet, consectetur elit adipiscing. Donec semper diam nisl, 
+                        a pharetra scelerisqu nibh quis. Ante ipsum vestibulum.-->
+                    </p>
+                    <!--<button class="blue-button">
+                        Shop Now
+                    </button>-->
+                </div>
+             </div>
+            <!-- END OF SECOND PROMOTION SECTION -->
+
+            <!-- "ALL" SECTION -->
+            <div class="product-section" id="product-section-all">
+                <div class="product-section-top-container" id="product">
+                    <div class="section-category-container">
+                        <div class="section-category-type">
+                            <span class="blue-line"></span>
+                            <span class="section-category-text">All Product</span>
+                        </div>
+                        <h1>Explore Best Product</h1>
+                    </div>
+
+                    <div class="slideshow-buttons-container top" data-slideshow="all">
+                        <button class="slideshow-button prev-button">
+                            <svg viewBox="0 0 24 24" fill="none" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15 6L9 12L15 18" stroke="#4ab8fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                        </button>
+                        <button class="slideshow-button next-button">
+                            <svg viewBox="0 0 24 24" fill="none" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 6L15 12L9 18" stroke="#4ab8fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="product-cards-container">
+                    <ul>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="images/product-page/speker/2.png" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>ASHLEY 15"</h1>
+                                <h2>Model: Hybrid-15Pro</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="images/product-page/speker/3.png" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>ASHLEY 15"</h1>
+                                <h2>Model: Hero15a</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="images/product-page/speker/1.png" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>ASHLEY 15"</h1>
+                                <h2>Model: FBX-15Pro</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="images/product-page/featured-categories/1.png" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>Mixer ASHLEY</h1>
+                                <h2>Model: X Man 8</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="images/product-page/speker/4.png" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="slideshow-buttons-container bottom" data-slideshow="all">
+                    <button class="slideshow-button prev-button">
+                        <svg viewBox="0 0 24 24" fill="none" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15 6L9 12L15 18" stroke="#4ab8fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    </button>
+                    <button class="slideshow-button next-button">
+                        <svg viewBox="0 0 24 24" fill="none" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 6L15 12L9 18" stroke="#4ab8fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    </button>
+                </div>
+            </div> <!-- END OF "ALL" SECTION -->
+
+            <!-- Microphone SECTION -->
+            <div class="product-section" id="product-section-headphones">
+                <div class="product-section-top-container">
+                    <div class="section-category-container">
+                        <div class="section-category-type">
+                            <span class="blue-line"></span>
+                            <span class="section-category-text">Microphone</span>
+                        </div>
+                        <h1>Discover Our Microphone</h1>
+                    </div>
+                    <div class="slideshow-buttons-container top" data-slideshow="headphones">
+                        <button class="slideshow-button prev-button">
+                            <svg viewBox="0 0 24 24" fill="none" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15 6L9 12L15 18" stroke="#4ab8fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                        </button>
+                        <button class="slideshow-button next-button">
+                            <svg viewBox="0 0 24 24" fill="none" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 6L15 12L9 18" stroke="#4ab8fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="product-cards-container">
+                    <ul>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="slideshow-buttons-container bottom" data-slideshow="headphones">
+                    <button class="slideshow-button prev-button">
+                        <svg viewBox="0 0 24 24" fill="none" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15 6L9 12L15 18" stroke="#4ab8fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    </button>
+                    <button class="slideshow-button next-button">
+                        <svg viewBox="0 0 24 24" fill="none" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 6L15 12L9 18" stroke="#4ab8fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    </button>
+                </div>
+            </div> <!-- END OF HEADPHONES COLLECTION -->
+
+            <!-- MOBILE PHONE SECTION -->
+            <div class="product-section" id="product-section-mobile">
+                <div class="product-section-top-container">
+                    <div class="section-category-container">
+                        <div class="section-category-type">
+                            <span class="blue-line"></span>
+                            <span class="section-category-text">Speaker</span>
+                        </div>
+                        <h1>Discover Our Speaker</h1>
+                    </div>
+                    <div class="slideshow-buttons-container top" data-slideshow="mobile">
+                        <button class="slideshow-button prev-button">
+                            <svg viewBox="0 0 24 24" fill="none" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15 6L9 12L15 18" stroke="#4ab8fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                        </button>
+                        <button class="slideshow-button next-button">
+                            <svg viewBox="0 0 24 24" fill="none" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 6L15 12L9 18" stroke="#4ab8fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-cards-container">
+                    <ul>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="images/product-page/speker/2.png" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>ASHLEY 15"</h1>
+                                <h2>Model: Hybrid-15Pro</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="images/product-page/speker/3.png" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>ASHLEY 15"</h1>
+                                <h2>Model: Hero15a</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="images/product-page/speker/1.png" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>ASHLEY 15"</h1>
+                                <h2>Model: FBX-15Pro</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="images/product-page/speker/4.png" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="slideshow-buttons-container bottom" data-slideshow="mobile">
+                    <button class="slideshow-button prev-button">
+                        <svg viewBox="0 0 24 24" fill="none" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15 6L9 12L15 18" stroke="#4ab8fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    </button>
+                    <button class="slideshow-button next-button">
+                        <svg viewBox="0 0 24 24" fill="none" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 6L15 12L9 18" stroke="#4ab8fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    </button>
+                </div>
+            </div> <!-- END OF MOBILE PHONES COLLECTION -->
+
+            <!-- TABLET SECTION -->
+            <div class="product-section" id="product-section-tablet">
+                <div class="product-section-top-container">
+                    <div class="section-category-container">
+                        <div class="section-category-type">
+                            <span class="blue-line"></span>
+                            <span class="section-category-text">Professional Mixer Console</span>
+                        </div>
+                        <h1>Explore Our Mixer Console</h1>
+                    </div>
+                    <div class="slideshow-buttons-container top" data-slideshow="tablet">
+                        <button class="slideshow-button prev-button">
+                            <svg viewBox="0 0 24 24" fill="none" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15 6L9 12L15 18" stroke="#4ab8fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                        </button>
+                        <button class="slideshow-button next-button">
+                            <svg viewBox="0 0 24 24" fill="none" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 6L15 12L9 18" stroke="#4ab8fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-cards-container">
+                    <ul>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="images/product-page/featured-categories/1.png" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>Mixer ASHLEY</h1>
+                                <h2>Model: X Man 8</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>test</h1>
+                                <h2>Model:</h2>
+                                <p>Rp x.xxx.xxx</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="slideshow-buttons-container bottom" data-slideshow="tablet">
+                    <button class="slideshow-button prev-button">
+                        <svg viewBox="0 0 24 24" fill="none" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15 6L9 12L15 18" stroke="#4ab8fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    </button>
+                    <button class="slideshow-button next-button">
+                        <svg viewBox="0 0 24 24" fill="none" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 6L15 12L9 18" stroke="#4ab8fd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    </button>
+                </div>
+            </div> <!-- END OF TABLET COLLECTION -->
+        </div> <!-- END OF MAIN BODY -->
+    </body>
+    <footer id=footer aria-label="Site footer">
+        <div style=width:100%;overflow:hidden>
+            <div class=footer-line></div>
         </div>
-    </div>
-    <!--Animate on Scroll library initialization-->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-      AOS.init({
-        offset:-75,
-        delay: 0,
-        duration: 1000,
-        easing: 'ease',
-        once: false,
-        mirror: false,
-        anchorPlacement: 'top-bottom'
-
-        });
-    </script>
-    <script src="https://natsuno-shosetsu.github.io/js/hamburger.js"></script>
-    <script>Initialize()</script>
-
-<!-- Carousel Script -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
-  integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
-  crossorigin="anonymous"></script>
-<!-- OWl Carousel -->
-<script type="text/javascript">
-  $(".owl-carousel").owlCarousel({
-    loop: true,
-    margin: 20,
-    nav: false,
-    autoplay: true,
-    autoplayTimeout: 3500,
-    // responsiveClass: true,
-    // autoHeight: true,
-    autoplayHoverPause: true,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      900: {
-        items: 2,
-      },
-      1200: {
-        items: 3,
-      },
-    },
-  });
-</script>
-</body>
-<footer>
-  <div id="footer">
-    <div class="container clearfix">
-      <ul id="legal" class="right">
-        <li><a href="">Alts Projects</a></li>
-      </ul>
-      <a class="left" href="/">
-        <span class="mega-octicon octicon-mark-github"></span>
-      </a>
-      <ul id="legal">
-        <li>© 2026 Kokosonn, Inc.</li>
-        <li><a href="https://raw.githubusercontent.com/kaguya-works/kokosonn-common/refs/heads/main/terms">Terms</a></li>
-        <li><a href="">Privacy</a></li>
-        <li><a href="">Security</a></li>
-      </ul>
-      <span class="sha" original-title="">𝛑</span>
-    </div>
-  </div>
-</footer>
+        <div id=footer-info>
+            <div>
+                <span class=icon-copyright>© 2026 Kokoson, Inc. All Rights Reserved.</span>
+            </div>
+            <div>
+                Designed by &nbsp;<a href=https://t.me/imren0x target=_blank rel="noopener nofollow noreferrer">RenzAlt</a> &nbsp;&&nbsp;<a href=https://t.me/me_renzalt target=_blank rel="noopener nofollow noreferrer">RenzAlt</a>
+            </div>
+            <div>
+                Powered by &nbsp;<a href=https://astro.build/ target=_blank rel="noopener nofollow noreferrer">Astro</a>
+            </div>
+        </div>
+    </footer>
 </html>
