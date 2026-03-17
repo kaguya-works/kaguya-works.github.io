@@ -57,7 +57,19 @@
                 let menuPage = document.querySelector('#menu-page');
                 let html = document.querySelector('html');
 
-                let screenType = window.innerWidth <= 500 ? "mobile" : "desktop";
+                // Determine Screen Device: Desktop or Mobile
+                let menuBarStyle = window.getComputedStyle(menuBar);
+                let screenType = '';
+
+                if (menuBarStyle.display === "flex") {
+                    screenType = "mobile"
+                }
+                else if (menuBarStyle.display === "none") {
+                    screenType = "desktop"
+                }
+                else {
+                    console.log("Error: Failed to identify screen type", screenType)
+                }
 
                 // Show/Hide Menu Page
 
