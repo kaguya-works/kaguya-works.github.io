@@ -57,19 +57,7 @@
                 let menuPage = document.querySelector('#menu-page');
                 let html = document.querySelector('html');
 
-                // Determine Screen Device: Desktop or Mobile
-                let menuBarStyle = window.getComputedStyle(menuBar);
-                let screenType = '';
-
-                if (menuBarStyle.display === "flex") {
-                    screenType = "mobile"
-                }
-                else if (menuBarStyle.display === "none") {
-                    screenType = "desktop"
-                }
-                else {
-                    console.log("Error: Failed to identify screen type", screenType)
-                }
+                let screenType = window.innerWidth <= 500 ? "mobile" : "desktop";
 
                 // Show/Hide Menu Page
 
@@ -87,6 +75,7 @@
                 let rootStyles = getComputedStyle(html);
                 let productCardWidth;
                 let productCards;
+                let productCardsPerRow;
 
                 if (screenType === "desktop") {
                     productCardWidth = parseInt(rootStyles.getPropertyValue('--product-card-width').replace('px', ''));
