@@ -87,6 +87,7 @@
                 let rootStyles = getComputedStyle(html);
                 let productCardWidth;
                 let productCards;
+                let productCardsPerRow = 1;
 
                 if (screenType === "desktop") {
                     productCardWidth = parseInt(rootStyles.getPropertyValue('--product-card-width').replace('px', ''));
