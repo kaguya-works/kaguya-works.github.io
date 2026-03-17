@@ -1,0 +1,436 @@
+@charset "UTF-8";:root {
+    --footer-icon: url(../images/taichi.png);
+    --top-icon: url(../images/taichi.png);
+    --sponsor-icon: url(../images/taichi.png);
+    --cursor-default: url(../images/cursor/reimu-cursor-default.png), auto;
+    --cursor-pointer: url(../images/cursor/reimu-cursor-pointer.png), pointer;
+    --cursor-text: url(../images/cursor/reimu-cursor-text.png), text
+}
+
+:root {
+    --red-1: #4ab8fd;
+    --grey-9: #888;
+    --grey-7: var(--color-default);
+    --color-archive-year: black;
+    --color-default: #444;
+    --color-border: var(--red-3);
+    --color-link: var(--red-1);
+    --color-background: #eee;
+    --color-code-background: #f8f8f8;
+    --color-header-background: rgba(255, 255, 255, 0.9);
+    --color-footer-background: #fff;
+    --color-mobile-nav-background: #fff;
+    --color-wrap: #fff;
+    --color-sticky: #fff;
+    --color-h2-border: #eee;
+    --color-meta-shadow: var(--red-6);
+    --color-hover-shadow: rgba(120, 120, 120, 0.15);
+    --color-h2-after: var(--red-1);
+    --color-red-6-shadow: rgba(255, 78, 78, 0.6);
+    --color-red-3-shadow: rgba(255, 78, 78, 0.3);
+    --highlight-nav: #f5f5f5;
+    --highlight-scrollbar: #d6d6d6;
+    --highlight-background: #fdfdfd;
+    --highlight-selection: #e9e9e988;
+    --highlight-foreground: #24292e;
+    --highlight-comment: #7d7d7d;
+    --highlight-red: #d73a49;
+    --highlight-orange: #e36209;
+    --highlight-yellow: #cb911d;
+    --highlight-green: #22863a;
+    --highlight-aqua: #005cc5;
+    --highlight-blue: #032f62;
+    --highlight-purple: #6f42c1;
+    --highlight-deletion: #b31d28;
+    --highlight-deletion-bg: #ffeef0;
+    --highlight-addition: #22863a;
+    --highlight-addition-bg: #f0fff4;
+    --shadow-meta: 0 0 5px 2px var(--color-meta-shadow);
+    --shadow-meta-hover: 0 0 6px 4px var(--color-meta-shadow);
+    --shadow-card: 0 0 10px 2px var(--color-hover-shadow);
+    --shadow-card-hover: 0 0 10px 4px var(--color-hover-shadow);
+    --shadow-red-6-shadow: 0 0 8px var(--color-red-6-shadow)
+}
+
+[data-theme=dark]:root {
+    --red-0: var(--red-1);
+    --red-4: rgba(255, 208, 208, 0.5);
+    --red-5: rgba(255, 228, 228, 0.15);
+    --red-5-5: rgba(255, 236, 236, 0.05);
+    --red-6: rgba(255, 243, 243, 0.2);
+    --color-archive-year: #999;
+    --color-default: #999;
+    --color-border: var(--red-5);
+    --color-background: #21252b;
+    --color-code-background: rgba(232, 232, 232, 0.1);
+    --color-header-background: #222222;
+    --color-footer-background: #21252b;
+    --color-mobile-nav-background: #21252b;
+    --color-wrap: #272b30;
+    --color-h2-border: #47474a;
+    --color-meta-shadow: rgba(0, 0, 0, 0.2);
+    --color-hover-shadow: rgba(0, 0, 0, 0.2);
+    --highlight-nav: #222830;
+    --highlight-scrollbar: #454d59;
+    --highlight-background: #1e2027;
+    --highlight-selection: #51515155;
+    --highlight-foreground: #c9d1d9;
+    --highlight-comment: #8b949e;
+    --highlight-red: #ff7b72;
+    --highlight-orange: #ffa657;
+    --highlight-yellow: #ffcc66;
+    --highlight-green: #7ee787;
+    --highlight-aqua: #a5d6ff;
+    --highlight-blue: #79c0ff;
+    --highlight-purple: #d2a8ff;
+    --highlight-deletion: #ffa198;
+    --highlight-deletion-bg: #490202;
+    --highlight-addition: #7ee787;
+    --highlight-addition-bg: #04260f
+}
+
+[data-theme=dark] .pswp__img {
+    opacity: 1;
+    filter: none;
+    animation: none
+}
+
+[data-theme=dark] img.lazyloaded {
+    opacity: 1;
+    animation: blur-darken .8s ease-in-out forwards!important
+}
+
+@keyframes blur {
+    0% {
+        filter: blur(10px)
+    }
+
+    to {
+        filter: blur(0)
+    }
+}
+
+@keyframes blur-darken {
+    0% {
+        filter: blur(10px)brightness(70%)
+    }
+
+    to {
+        filter: blur(0)brightness(70%)
+    }
+}
+
+@keyframes fade-in-blur {
+    0% {
+        opacity: 0;
+        filter: blur(10px)
+    }
+
+    100% {
+        opacity: 1;
+        filter: blur(0)
+    }
+}
+
+@keyframes rotate-all {
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes transform-all {
+    100% {
+        transform: translateX(-100px)
+    }
+}
+
+#footer {
+    background-color: linear-gradient(to top,var(--color-footer-background) 50%,transparent);
+    padding: 40px 0 20px;
+    color: var(--grey-9);
+    transition: 1s
+}
+
+#footer:hover .footer-line {
+    opacity: .5
+}
+
+#footer a {
+    color: var(--color-link);
+    text-decoration: none
+}
+
+#footer a:hover {
+    text-decoration: underline
+}
+
+#footer .footer-beian a {
+    color: var(--grey-9)
+}
+
+.footer-line {
+    margin: 20px 0 40px;
+    opacity: .3;
+    width: 200%;
+    height: 10px;
+    background: linear-gradient(to left,var(--red-1) 50%,transparent 0%)repeat-x 0 0/100px 10px;
+    transition: opacity .3s;
+    animation: transform-all 3s linear infinite;
+    filter: drop-shadow(0 0 2px var(--red-1))
+}
+
+#footer-info {
+    line-height: 1.67;
+    font-size: .85em ;
+    padding: 0 20px;
+    text-align: center;
+}
+
+#footer-info div {
+    margin: 8px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.icon-brush,.icon-coffee,.icon-eye,.icon-user {
+    margin: 0 4px
+}
+
+.footer-info-sep {
+    width: 24px;
+    opacity: .8
+}
+
+.footer-info-sep.rotate {
+    animation: rotate-all 3s linear infinite
+}
+
+@supports(-webkit-mask: var(--footer-icon) no-repeat center/80%) {
+    .footer-info-sep {
+        background-color:var(--red-1);
+        -webkit-mask: var(--footer-icon)no-repeat center/80%
+    }
+}
+
+@supports(mask: var(--footer-icon) no-repeat center/80%) {
+    .footer-info-sep {
+        background-color:var(--red-1);
+        mask: var(--footer-icon)no-repeat center/80%
+    }
+}
+
+@supports not ((mask: var(--footer-icon) no-repeat center/80%) and (-webkit-mask:var(--footer-icon) no-repeat center/80%)) {
+    .footer-info-sep {
+        background:var(--footer-icon)no-repeat 50%/80%
+    }
+}
+
+:root {
+    --color-info-bg: hsl(210, 90%, 96%);
+    --color-info-text: hsl(210, 100%, 40%);
+    --color-info-shadow: hsl(210, 100%, 98%);
+    --color-warning-bg: hsl(40, 100%, 94%);
+    --color-warning-text: hsl(34, 94%, 35%);
+    --color-warning-shadow: hsl(40, 100%, 98%);
+    --color-danger-bg: hsl(0, 100%, 97%);
+    --color-danger-text: hsl(356, 72%, 45%);
+    --color-danger-shadow: hsl(0, 100%, 98%);
+    --color-tip-bg: hsl(138, 76%, 96%);
+    --color-tip-text: hsl(152, 95%, 28%);
+    --color-tip-shadow: hsl(138, 100%, 98%);
+    --color-important-bg: hsl(270, 80%, 96%);
+    --color-important-text: hsl(270, 80%, 45%);
+    --color-important-shadow: hsl(270, 80%, 98%)
+}
+
+[data-theme=dark]:root {
+    --color-info-bg: hsl(210, 30%, 25%);
+    --color-info-text: hsl(210, 80%, 70%);
+    --color-info-shadow: hsl(210, 30%, 16%);
+    --color-warning-bg: hsl(40, 30%, 25%);
+    --color-warning-text: hsl(40, 80%, 70%);
+    --color-warning-shadow: hsl(40, 30%, 16%);
+    --color-danger-bg: hsl(0, 30%, 25%);
+    --color-danger-text: hsl(0, 80%, 70%);
+    --color-danger-shadow: hsl(0, 30%, 16%);
+    --color-tip-bg: hsl(138, 30%, 25%);
+    --color-tip-text: hsl(138, 80%, 70%);
+    --color-tip-shadow: hsl(138, 30%, 16%);
+    --color-important-bg: hsl(270, 30%, 25%);
+    --color-important-text: hsl(270, 80%, 70%);
+    --color-important-shadow: hsl(270, 30%, 16%)
+}
+
+.reimu-search {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--grey-9);
+    flex-shrink: 0
+}
+
+.reimu-search-input-icon {
+    display: inline-block;
+    width: 20px;
+    font-size: 18px;
+    vertical-align: middle;
+    margin-right: 8px
+}
+
+#reimu-search-input {
+    flex: 1
+}
+
+#reimu-search-input input {
+    width: 100%;
+    outline: none;
+    border: none;
+    background: 0 0;
+    color: var(--grey-9);
+    font-size: 16px;
+    vertical-align: middle;
+    font-family: lxgw wenkai,mulish,noto serif sc,-apple-system,pingfang sc,microsoft yahei,sans-serif
+}
+
+#reimu-search-input input[type=search]::-webkit-search-cancel-button {
+    -webkit-appearance: none
+}
+
+.reimu-powered {
+    float: right;
+    cursor: var(--cursor-default,default)!important
+}
+
+.reimu-powered img {
+    display: inline-block;
+    height: 18px;
+    vertical-align: middle
+}
+
+.reimu-results {
+    position: relative;
+    overflow: auto;
+    padding: 16px 32px;
+    box-sizing: border-box
+}
+
+.reimu-results hr {
+    margin: 16px 0 8px;
+    border: none;
+    height: 1px;
+    background: var(--grey-9)
+}
+
+#reimu-hits {
+    margin-top: 12px
+}
+
+#reimu-hits mark {
+    background: var(--red-1);
+    color: #fff
+}
+
+.reimu-hit-item-link {
+    display: block;
+    text-decoration: none;
+    color: var(--red-2);
+    padding: 12px 0 12px 24px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.reimu-hit-item-link:before {
+    content: "";
+    width: 6px;
+    height: 12px;
+    background: var(--color-h2-after);
+    display: inline-block;
+    vertical-align: middle;
+    margin: -2px 12px 0 -24px;
+    box-shadow: var(--shadow-red-6-shadow);
+    opacity: .5;
+    transition: .2s
+}
+
+.reimu-hit-item-link:hover:before,.reimu-hit-item-link:focus:before {
+    height: 6px;
+    border-radius: 50%;
+    opacity: 1
+}
+
+.reimu-pagination {
+    margin: 8px auto;
+    text-align: center;
+    color: var(--grey-9);
+    overflow: hidden
+}
+
+.reimu-pagination a {
+    padding: 10px 16px;
+    color: var(--grey-9);
+    text-decoration: none;
+    transition: .2s
+}
+
+.reimu-pagination a:hover,.reimu-pagination a:focus {
+    background: var(--red-2);
+    box-shadow: var(--shadow-red-6-shadow);
+    color: #fff
+}
+
+.reimu-pagination .pagination-item {
+    display: inline-block
+}
+
+.reimu-pagination .page-number {
+    display: inline-block;
+    border-radius: 8px;
+    margin: 6px
+}
+
+.reimu-pagination .current .page-number {
+    color: #fff;
+    background: var(--red-1);
+    font-weight: 700;
+    box-shadow: var(--shadow-red-6-shadow)
+}
+
+.reimu-pagination .disabled-item {
+    display: none
+}
+
+.reimu-bg {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    opacity: .5
+}
+
+#reimu-hits-empty {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+[data-theme=dark] ::-webkit-scrollbar,[data-theme=dark] ::-webkit-scrollbar-track {
+    background-color: #616161;
+    border-radius: 10px
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #4ab8fd;
+}
