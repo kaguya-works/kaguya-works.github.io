@@ -23,7 +23,7 @@
         <meta property="twitter:title" content="Kokoson - Audio" />
         <meta property="twitter:description" content="" />
         <meta property="twitter:image" content="Assets/Cover.avif" />
-        <link href="styles/product_page/styles.css" rel="stylesheet">
+        <link href="styles/styles.css" rel="stylesheet">
         <link href="styles/footer.css" rel="stylesheet">
         <link rel="stylesheet" href="styles/contact.css">
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -40,14 +40,10 @@
                 })
 
                 function navScroll(result) {
-                    // result = if the user is currently viewing the menu page
                     if (window.scrollY > 0 && !(result)) {
-                        //navBar.style.boxShadow = '0 5px 20px rgba(190, 190, 190, 0.15)';
-                        //navBar.style.backgroundColor = 'white'
                     }
                     else {
                         navBar.style.boxShadow = 'none'
-                        //navBar.style.backgroundColor = 'transparent'
                     }
                 }
 
@@ -87,7 +83,6 @@
                 let rootStyles = getComputedStyle(html);
                 let productCardWidth;
                 let productCards;
-                let productCardsPerRow;
 
                 if (screenType === "desktop") {
                     productCardWidth = parseInt(rootStyles.getPropertyValue('--product-card-width').replace('px', ''));
@@ -139,7 +134,7 @@
     
                 // ADDING ITEMS TO CART
     
-                let cartCount;
+                /*let cartCount;
                 let cartButtons = document.querySelectorAll('.product-card .blue-button');
                 
                 cartButtons.forEach((button) => {
@@ -172,7 +167,7 @@
                     else {
                         console.log("Error: accessCounter Function failed.")
                     }
-                }
+                }*/
 
                 // SLIDESHOW
 
@@ -229,7 +224,7 @@
         <nav>
             <div id="navbar">
                 <div id="navbar-logo">
-                    <img src="images/kokoson.png" alt="">
+                    <img src="images/kokoson.png" data-tilt onclick="window.open('#', '_blank');" alt="">
                 </div>
                 <div id="menu-bar">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
@@ -371,11 +366,10 @@
                 <div class="promo-text-container">
                     <div class="promo-heading">
                         <span class="blue-line"></span>
-                        <h1>Mixer ASHLEY X Man 8</h1>
+                        <h1>Audio Mixer ASHLEY X Man 8</h1>
                     </div>
                     <h2>Professional Audio Solution <!--<br>Of Fresh Warmth</h2>-->
                     <p> 
-                        test
                         <!--Lorem ipsum dolor sit amet, consectetur elit adipiscing. Donec semper diam nisl, 
                         a pharetra scelerisqu nibh quis. Ante ipsum vestibulum.-->
                     </p>
@@ -411,13 +405,13 @@
                 <div class="product-cards-container">
                     <ul>
                         <li class="product-card">
-                            <div class="product-image-container">
+                            <div class="product-image-container" data-tilt onclick="window.open('product/product.html', '_blank');">
                                 <img src="images/product-page/speker/2.png" alt="">
                             </div>
                             <div class="product-text-container">
                                 <h1>ASHLEY 15"</h1>
                                 <h2>Model: Hybrid-15Pro</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <p>Rp 4.000.000</p>
                             </div>
                         </li>
                         <li class="product-card">
@@ -427,7 +421,7 @@
                             <div class="product-text-container">
                                 <h1>ASHLEY 15"</h1>
                                 <h2>Model: Hero15a</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <p>Rp 3.100.000</p>
                             </div>
                         </li>
                         <li class="product-card">
@@ -437,7 +431,7 @@
                             <div class="product-text-container">
                                 <h1>ASHLEY 15"</h1>
                                 <h2>Model: FBX-15Pro</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <p>Rp 3.700.000</p>
                             </div>
                         </li>
                         <li class="product-card">
@@ -447,7 +441,7 @@
                             <div class="product-text-container">
                                 <h1>Mixer ASHLEY</h1>
                                 <h2>Model: X Man 8</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <p>Rp 3.000.000</p>
                             </div>
                         </li>
                         <li class="product-card">
@@ -455,9 +449,9 @@
                                 <img src="images/product-page/speker/4.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>Baretone 12"</h1>
+                                <h2>Model: BT3H1212BWR</h2>
+                                <p>Rp 3.500.000</p>
                             </div>
                         </li>
                         <li class="product-card">
@@ -547,102 +541,102 @@
                     <ul>
                         <li class="product-card">
                             <div class="product-image-container">
-                                <img src="" alt="">
+                                <img src="images/product-page/mic/1.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>Mic ASHLEY</h1>
+                                <h2>Model: Pro-1</h2>
+                                <p>Rp 1.900.000</p>
                             </div>
                         </li>
                         <li class="product-card">
                             <div class="product-image-container">
-                                <img src="" alt="">
+                                <img src="images/product-page/mic/2.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>Mic ASHLEY</h1>
+                                <h2>Model: V28</h2>
+                                <p>Rp 370.000</p>
                             </div>
                         </li>
                         <li class="product-card">
                             <div class="product-image-container">
-                                <img src="" alt="">
+                                <img src="images/product-page/mic/3.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>Mic ASHLEY</h1>
+                                <h2>Model: WR300</h2>
+                                <p>Rp 410.000</p>
                             </div>
                         </li>
                         <li class="product-card">
                             <div class="product-image-container">
-                                <img src="" alt="">
+                                <img src="images/product-page/mic/4.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>Mic ASHLEY</h1>
+                                <h2>Model: WR200</h2>
+                                <p>Rp 350.000</p>
                             </div>
                         </li>
                         <li class="product-card">
                             <div class="product-image-container">
-                                <img src="" alt="">
+                                <img src="images/product-page/mic/5.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>Mic AUDERPRO</h1>
+                                <h2>Model: ap-949wmt 4ch</h2>
+                                <p>Rp 10.000.000</p>
                             </div>
                         </li>
                         <li class="product-card">
                             <div class="product-image-container">
-                                <img src="" alt="">
+                                <img src="images/product-page/mic/6.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>Mic JBL</h1>
+                                <h2>Model: AS2</h2>
+                                <p>Rp 1.500.000</p>
                             </div>
                         </li>
                         <li class="product-card">
                             <div class="product-image-container">
-                                <img src="" alt="">
+                                <img src="images/product-page/mic/7.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>Mic AUDERPRO</h1>
+                                <h2>Model: AP929WM HH</h2>
+                                <p>Rp 2.500.000</p>
                             </div>
                         </li>
                         <li class="product-card">
                             <div class="product-image-container">
-                                <img src="" alt="">
+                                <img src="images/product-page/mic/8.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>Mic SHURE</h1>
+                                <h2>Model: SV-100</h2>
+                                <p>Rp 420.000</p>
                             </div>
                         </li>
                         <li class="product-card">
                             <div class="product-image-container">
-                                <img src="" alt="">
+                                <img src="images/product-page/mic/9.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>Mic SHURE</h1>
+                                <h2>Model: PGA-58</h2>
+                                <p>Rp 950.000</p>
                             </div>
                         </li>
                         <li class="product-card">
                             <div class="product-image-container">
-                                <img src="" alt="">
+                                <img src="images/product-page/mic/10.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>Mic SHURE</h1>
+                                <h2>Model: SV-200</h2>
+                                <p>Rp 480.000</p>
                             </div>
                         </li>
                     </ul>
@@ -686,7 +680,7 @@
                             <div class="product-text-container">
                                 <h1>ASHLEY 15"</h1>
                                 <h2>Model: Hybrid-15Pro</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <p>Rp 4.000.000</p>
                             </div>
                         </li>
                         <li class="product-card">
@@ -696,7 +690,7 @@
                             <div class="product-text-container">
                                 <h1>ASHLEY 15"</h1>
                                 <h2>Model: Hero15a</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <p>Rp 3.100.000</p>
                             </div>
                         </li>
                         <li class="product-card">
@@ -706,7 +700,17 @@
                             <div class="product-text-container">
                                 <h1>ASHLEY 15"</h1>
                                 <h2>Model: FBX-15Pro</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <p>Rp 3.700.000</p>
+                            </div>
+                        </li>
+                        <li class="product-card">
+                            <div class="product-image-container">
+                                <img src="images/product-page/speker/5.png" alt="">
+                            </div>
+                            <div class="product-text-container">
+                                <h1>ASHLEY 15"</h1>
+                                <h2>Model: ACT600Pro</h2>
+                                <p>Rp 3.600.000</p>
                             </div>
                         </li>
                         <li class="product-card">
@@ -714,69 +718,49 @@
                                 <img src="images/product-page/speker/4.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>Baretone 12"</h1>
+                                <h2>Model: BT3H1212BWR</h2>
+                                <p>Rp 3.500.000</p>
                             </div>
                         </li>
                         <li class="product-card">
                             <div class="product-image-container">
-                                <img src="" alt="">
+                                <img src="images/product-page/speker/6.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>Baretone 15"</h1>
+                                <h2>Model: MAX15HB</h2>
+                                <p>Rp 4.200.000</p>
                             </div>
                         </li>
                         <li class="product-card">
                             <div class="product-image-container">
-                                <img src="" alt="">
+                                <img src="images/product-page/speker/7.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>AUDERPRO 6"</h1>
+                                <h2>Model: AD-66SCC</h2>
+                                <p>Rp 225.000</p>
                             </div>
                         </li>
                         <li class="product-card">
                             <div class="product-image-container">
-                                <img src="" alt="">
+                                <img src="images/product-page/speker/8.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>Partybox JBL</h1>
+                                <h2>Model: Encore 2 Mic</h2>
+                                <p>Rp 5.500.000</p>
                             </div>
                         </li>
                         <li class="product-card">
                             <div class="product-image-container">
-                                <img src="" alt="">
+                                <img src="images/product-page/speker/9.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
-                            </div>
-                        </li>
-                        <li class="product-card">
-                            <div class="product-image-container">
-                                <img src="" alt="">
-                            </div>
-                            <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
-                            </div>
-                        </li>
-                        <li class="product-card">
-                            <div class="product-image-container">
-                                <img src="" alt="">
-                            </div>
-                            <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>HUPER 15"</h1>
+                                <h2>Model: JL15</h2>
+                                <p>Rp 4.300.000</p>
                             </div>
                         </li>
                     </ul>
@@ -797,8 +781,8 @@
                 <div class="product-section-top-container">
                     <div class="section-category-container">
                         <div class="section-category-type">
-                            <span class="blue-line"></span>
-                            <span class="section-category-text">Professional Mixer Console</span>
+                            <!--<span class="blue-line"></span>-->
+                            <span class="section-category-text">Audio Mixer</span>
                         </div>
                         <h1>Explore Our Mixer Console</h1>
                     </div>
@@ -820,47 +804,47 @@
                             <div class="product-text-container">
                                 <h1>Mixer ASHLEY</h1>
                                 <h2>Model: X Man 8</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <p>Rp 3.000.000</p>
                             </div>
                         </li>
                         <li class="product-card">
                             <div class="product-image-container">
-                                <img src="" alt="">
+                                <img src="images/product-page/mixer/1.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>Mixer ASHLEY</h1>
+                                <h2>Model: Better-4</h2>
+                                <p>Rp 700.000</p>
                             </div>
                         </li>
                         <li class="product-card">
                             <div class="product-image-container">
-                                <img src="" alt="">
+                                <img src="images/product-page/mixer/2.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>Mixer ASHLEY</h1>
+                                <h2>Model: Premium-6</h2>
+                                <p>Rp 1.000.000</p>
                             </div>
                         </li>
                         <li class="product-card">
                             <div class="product-image-container">
-                                <img src="" alt="">
+                                <img src="images/product-page/mixer/3.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>Mixer ASHLEY</h1>
+                                <h2>Model: Favorite-8</h2>
+                                <p>Rp 3.000.000</p>
                             </div>
                         </li>
                         <li class="product-card">
                             <div class="product-image-container">
-                                <img src="" alt="">
+                                <img src="images/product-page/mixer/4.png" alt="">
                             </div>
                             <div class="product-text-container">
-                                <h1>test</h1>
-                                <h2>Model:</h2>
-                                <p>Rp x.xxx.xxx</p>
+                                <h1>Mixer HUPER</h1>
+                                <h2>Model: Creator-4</h2>
+                                <p>Rp 1.100.000</p>
                             </div>
                         </li>
                         <li class="product-card">
