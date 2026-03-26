@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Primary Meta Tags -->
+        <title>Kokoson - Audio</title>
+        <meta name="title" content="Kokoson - Audio" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="">
+
+        <!-- Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="" />
+        <meta property="og:title" content="Kokoson - Audio" />
+        <meta property="og:description" content="" />
+        <meta property="og:image" content="Assets/Cover.avif" />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="" />
+        <meta property="twitter:title" content="Kokoson - Audio" />
+        <meta property="twitter:description" content="" />
+        <meta property="twitter:image" content="Assets/Cover.avif" />
+        <link href="../../styles/detail.css" rel="stylesheet">
+        <link href="../../styles/footer.css" rel="stylesheet">
+        <link rel="stylesheet" href="styles/contact.css">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {   
+                // NAVIGATION SCROLLING EFFECT
+
+                let navBar = document.querySelector('nav');
+                navScroll(false)
+
+                document.addEventListener('scroll', () => {
+                    navScroll(false)
+                })
+
+                function navScroll(result) {
+                    if (window.scrollY > 0 && !(result)) {
+                    }
+                    else {
+                        navBar.style.boxShadow = 'none'
+                    }
+                }
+
+                // MENU BAR
+
+                let menuBar = document.querySelector('#menu-bar');
+                let menuPage = document.querySelector('#menu-page');
+                let html = document.querySelector('html');
+
+                // Determine Screen Device: Desktop or Mobile
+                let menuBarStyle = window.getComputedStyle(menuBar);
+                let screenType = '';
+
+                if (menuBarStyle.display === "flex") {
+                    screenType = "mobile"
+                }
+                else if (menuBarStyle.display === "none") {
+                    screenType = "desktop"
+                }
+                else {
+                    console.log("Error: Failed to identify screen type", screenType)
+                }
+
+                // Show/Hide Menu Page
+
+                menuBar.addEventListener('click', () => {
+                    menuPage.classList.toggle('active');
+
+                    html.style.overflow = (menuPage.classList.contains('active')) ? "hidden" : "scroll"
+                    navScroll(menuPage.classList.contains('active'))
+                })
+
+                // PRODUCT CARDS DISPLAY
+
+                let productContainerWidth = document.querySelector('.product-cards-container').offsetWidth;
+
+                let rootStyles = getComputedStyle(html);
+                let productCardWidth;
+                let productCards;
+
+                if (screenType === "desktop") {
+                    productCardWidth = parseInt(rootStyles.getPropertyValue('--product-card-width').replace('px', ''));
+                    productCardsPerRow = Math.floor(productContainerWidth / (productCardWidth + 5));
+                }
+                else if (screenType === "mobile") {
+                    productCardsPerRow = (html.offsetWidth > 430) ? 3 : 2
+                    productCardWidth = Math.floor((productContainerWidth / productCardsPerRow) - 10)
+                }
+                else {
+                    console.log("Error: Failed to set productCardsPerRow & productCardWidth")
+                }
+
+                let marginSpacing = (productContainerWidth - (productCardsPerRow * productCardWidth)) / (productCardsPerRow - 1);
+                let lastElement = productCardsPerRow - 1;
+                
+                let sectionLastElement = []
+                let productSections = document.querySelectorAll('.product-section');
+                productSections.forEach((section) => {
+                    productCards = section.querySelectorAll('.product-card');
+                    
+                    for (let i = 0; i < productCardsPerRow; i++) {
+                        productCards[i].classList.add('active');
+    
+                        if (i === lastElement) {
+                            productCards[i].style.marginRight = '0px';
+                        }
+                        else {
+                            productCards[i].style.marginRight = `${marginSpacing}px`;
+                        }
+                    }
+
+                    sectionLastElement[section.id] = lastElement;
+                })
+    
+                // ADDING ITEMS TO WISHLIST
+    
+                let wishListCount;
+                let heartButtons = document.querySelectorAll('.heart-button');
+    
+                heartButtons.forEach((button) => {
+                    button.addEventListener('click', () => {
+                        button.classList.toggle('active');
+                        
+                        wishListCount = accessCounter('.wishlist-link span');
+                        wishListCount.innerHTML = document.querySelectorAll('.heart-button.active').length;
+                    })
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <nav>
+            <div id="navbar">
+                <div id="navbar-logo">
+                    <img src="../../images/kokoson.png" data-tilt onclick="window.open('../../index.html', '_blank');" alt="">
+                </div>
+                <div id="menu-bar">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                    </svg>
+                </div>
+                <div id="navbar-links">
+                    <ul>
+                        <li>
+                            <a href="../../index.html">
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- MENU BAR PAGE -->
+        <div id="menu-page">
+            <div id="menu-page-wrapper">
+                <ul>
+                    <li>
+                        <a href="../../index.html">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>  
+        <!-- END OF MENU PAGE --> 
+
+        <!-- MAIN BODY -->
+        <div class = "card-wrapper">
+      <div class = "card">
+        <!-- card left -->
+        <div class = "product-imgs">
+          <div class = "img-display">
+            <div class = "img-showcase">
+              <img src = "image/4.png">
+              <!--<img src = "shoes_images/shoe_2.jpg">
+              <img src = "shoes_images/shoe_3.jpg">
+              <img src = "shoes_images/shoe_4.jpg">-->
+            </div>
+          </div>
+          <div class = "img-select">
+            <!--<div class = "img-item">
+              <a href = "#" data-id = "1">
+                <img src = "shoes_images/shoe_1.jpg">
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "2">
+                <img src = "shoes_images/shoe_2.jpg">
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "3">
+                <img src = "shoes_images/shoe_3.jpg">
+              </a>
+            </div>
+            <div class = "img-item">
+              <a href = "#" data-id = "4">
+                <img src = "shoes_images/shoe_4.jpg">
+              </a>
+            </div>-->
+          </div>
+        </div>
+        <!-- card right -->
+        <div class = "product-content">
+          <h2 class = "product-title">HUPER 15"</h2>
+          <a class = "product-link">Model: JL15</a>
+          
+
+          <div class = "product-price">
+            <p class = "new-price">Rp 4.300.000</p>
+          </div>
+
+          <div class = "product-detail">
+            <h2>Detail Product: </h2>
+            <p>Woofer 15 Inch</p>
+            <p>Sistem 2 Way (Woofer + Tweeter)</p>
+            <p>Daya Output: 300 Watt</p>
+            <p>Freg respose 40hz-20Khz</p>
+            <p>Sensitifity 96-98db</p>
+          </div>
+
+          <div class = "purchase-info">
+            <button type = "button" class = "btn" data-tilt onclick="window.open('#', '_blank');">Tokopedia</button>
+            <button type = "button" class = "btn" data-tilt onclick="window.open('#', '_blank');">Test</button>
+          </div>
+
+          <div class = "social-links">
+            <p>Contact US: &nbsp;</p>
+            <a href = "https://www.facebook.com/Kokosonn29">
+              <i class = "fab fa-facebook-f"></i>
+            </a>
+            <a href = "https://www.instagram.com/koko.sonn/">
+              <i class = "fab fa-instagram"></i>
+            </a>
+            <a href = "https://api.whatsapp.com/send?phone=6281991514531&text=Hi%20Kokoson!%20Bisakah%20saya%20meminta%20informasi%20terkait%20soundsystem%20%3F">
+              <i class = "fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+    </body>
+    <footer id=footer aria-label="Site footer">
+        <div style=width:100%;overflow:hidden>
+            <div class=footer-line></div>
+        </div>
+        <div id=footer-info>
+            <div>
+                <span class=icon-copyright>© 2026 Kokoson, Inc. All Rights Reserved.</span>
+            </div>
+            <div>
+                Designed by &nbsp;<a href=https://t.me/imren0x target=_blank rel="noopener nofollow noreferrer">RenzAlt</a>
+            </div>
+            <div>
+                Powered by &nbsp;<a href=https://astro.build/ target=_blank rel="noopener nofollow noreferrer">Astro</a>
+            </div>
+        </div>
+    </footer>
+</html>
