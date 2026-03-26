@@ -296,7 +296,7 @@ nav {
 }
 
 .section-category-text {
-    color: #4ab8fd;
+    color: white;
     font-weight: 500;
     font-size: 25px;
 }
@@ -306,6 +306,10 @@ nav {
     justify-content: space-between;
     width: 100%;
     flex-wrap: wrap;
+}
+
+#product-category-wrapper a {
+    text-decoration: none;
 }
 
 .product-category {
@@ -770,8 +774,8 @@ nav {
     }
 
     .product-text-container h1 {
-        font-size: 14px;
-        text-wrap: nowrap;
+        font-size: 10px;
+        /*text-wrap: nowrap;*/
         text-overflow: ellipsis;
         overflow: hidden
     }
@@ -881,4 +885,29 @@ nav {
         width: 100px;
         border-radius: 20px;
     }
+}
+
+/*-----------------------------------*\
+  #BACK TO TOP
+\*-----------------------------------*/
+
+.back-top-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: white;
+  color: var(--white);
+  font-size: 24px;
+  padding: 18px;
+  border-radius: 50%;
+  z-index: 4;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition-1);
+}
+
+.back-top-btn.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-10px);
 }

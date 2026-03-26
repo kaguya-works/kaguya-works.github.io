@@ -203,7 +203,7 @@ img{
     padding: 2rem 1rem;
 }
 .product-title{
-    font-size: 3rem;
+    font-size: 30px;
     text-transform: capitalize;
     font-weight: 700;
     position: relative;
@@ -287,7 +287,6 @@ img{
 }
 .purchase-info input,
 .purchase-info .btn{
-    border: 1.5px solid #ddd;
     border-radius: 25px;
     text-align: center;
     padding: 0.45rem 0.8rem;
@@ -303,7 +302,7 @@ img{
     color: #fff;
 }
 .purchase-info .btn:first-of-type{
-    background: #256eff;
+    background: #00AA5B;
 }
 .purchase-info .btn:last-of-type{
     background: #f64749;
@@ -315,14 +314,17 @@ img{
     display: flex;
     align-items: center;
 }
+.social-links p{
+    color: white;
+}
 .social-links a{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 32px;
     height: 32px;
-    color: #000;
-    border: 1px solid #000;
+    color: white;
+    border: 1px solid white;
     margin: 0 0.2rem;
     border-radius: 50%;
     text-decoration: none;
@@ -330,9 +332,9 @@ img{
     transition: all 0.5s ease;
 }
 .social-links a:hover{
-    background: #000;
+    background: white;
     border-color: transparent;
-    color: #fff;
+    color: black;
 }
 
 @media screen and (min-width: 992px){
